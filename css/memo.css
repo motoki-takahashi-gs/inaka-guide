@@ -1,0 +1,29 @@
+/* main */
+
+main {
+    padding: 0 0 52px 0; /* to show bottom part properly with footer (52px is footer's height) */
+}
+
+/* Search part in Header */
+
+header .search {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate3d(0, -50%, 0);
+    -webkit-transform: translate3d(0, -50%, 0);
+    text-align: center;
+}
+
+header .search input[type=search] {
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    font-size: 1.8rem;
+    width: 90%;
+    background-image: url("../images/icon/search.png");
+    background-repeat: no-repeat;
+    background-position: 5px 7px;
+    background-size: 20px;
+    outline: none;
+    padding: 5px 10px 5px 35px;
+}

@@ -1,0 +1,1524 @@
+html {
+    font-size: 62.5%; /* 16px x 62.5% = 10px */
+}
+
+body {
+    color: #333333;
+    font-size: 1.6rem;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html, body.map {
+    height: 100%; /* Size has to be set to show Google Maps */
+}
+
+/**************
+Common classes
+**************/
+
+.flex-box {
+    display: flex;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.position-relative {
+    position: relative;
+}
+
+/******
+Header
+******/
+
+header {
+    height: 65px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #333333;
+    z-index: 10;
+    opacity: 0.8;
+}
+
+/* Title part in Header */
+
+header .title {
+    position: absolute;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    -webkit-transform: translate3d(0, -50%, 0);
+    left: 6vw;
+}
+
+header .title a {
+    text-decoration: none;
+    color: #333333;
+}
+
+header .title img {
+    width: 210px;
+}
+
+/* Navigation part in Header */
+
+.nav-bar {
+    visibility: hidden;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    -webkit-transform: translate3d(0, -50%, 0);
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.nav-bar i.fas.fa-bars {
+    visibility: hidden;
+}
+
+.nav-bar > div {
+    font-size: 3.0rem;
+}
+
+/* Hamburger menu in Header */
+
+.menu-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.menu-wrap .toggler {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    opacity: 0;
+    z-index: 2;
+}
+
+.menu-wrap .hamburger {
+    position: absolute;
+    top: 17px;
+    right: 25px;
+    width: 25px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.menu-wrap .hamburger > div {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background: #000;
+    transition: all 0.4s linear;
+}
+
+.menu-wrap .hamburger > div::before,
+.menu-wrap .hamburger > div::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: inherit;
+}
+
+.menu-wrap .hamburger > div::before {
+    top: -10px;
+}
+
+.menu-wrap .hamburger > div::after {
+    top: 10px;
+}
+
+.menu-wrap .toggler:checked + .hamburger > div::before,
+.menu-wrap .toggler:checked + .hamburger > div::after {
+    top: 0;
+    transform: rotate(90deg);
+    background: #fff;
+}
+
+.menu-wrap .toggler:checked + .hamburger > div {
+    transform: rotate(135deg);
+    background: #fff;
+}
+
+.menu-wrap .menu {
+    position: fixed;
+    top: 0;
+    left: 100vw;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(21, 41, 0, 0.95);
+    transition: all 0.4s linear;
+}
+
+.menu-wrap .toggler:checked ~ .menu {
+    visibility: visible;
+    left: 0;
+}
+
+.menu-wrap .menu ul li {
+    list-style: none;
+    color: #fff;
+    font-size: 2rem;
+    padding: 1em;
+}
+
+.menu-wrap .menu ul li a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/*****
+Map
+*****/
+
+main.map { /* Map part in map.php */
+    height: calc(100% - 66px);
+    /* 100% of body - (header 65px + border 1px + footer 0px) */
+}
+
+main.map div#map {
+    height: 100%;
+}
+
+.map .info-window a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.map .info-window .main-image {
+    text-align: center;
+}
+
+.map .info-window .main-image img {
+    font-size: 2.0rem;
+    max-width: 100%;
+    border-radius: 1em;
+    margin: 0 0 0.5em 0;
+}
+
+.map .info-window .title h3 {
+    font-size: 2.0rem;
+    margin: 0 0 0.7em 0;
+    line-height: 1.3em;
+}
+
+.map .info-window .summary,
+.map .info-window .date,
+.map .info-window .time,
+.map .info-window .address {
+    font-size: 1.5rem;
+    margin: 0 0 0.5em 0;
+    line-height: 1.5em;
+}
+
+.map .info-window .date > span > i,
+.map .info-window .time > span > i,
+.map .info-window .address > span > i {
+    font-size: 1.8rem;
+    margin: 0 0.5em 0 0;
+}
+
+.map .info-window .category button {
+    font-size: 1.4rem;
+    border: 1px solid #7b7b7b;
+    background-color: transparent;
+    border-radius: 1em;
+    margin: 0.4em 0.4em 0 0;
+    padding: 0.4em;
+}
+
+/******
+Modal
+******/
+
+.modal {
+    visibility: hidden;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    transition: all 0.5s ease-out;
+}
+
+.modal-active {
+    visibility: visible;
+}
+
+.modal .close {
+    color: #333333;
+    font-size: 5rem;
+    position: absolute;
+    top: 0.2em;
+    right: 0.6em;
+}
+
+.modal .search-options,
+.modal .select-destinations,
+.modal .select-dates,
+.modal .select-activities,
+.modal .calendar,
+.modal .review-and-payment,
+.modal .log-in,
+.modal .sign-up {
+    background-color: #fefefe;
+    height: fit-content;
+    min-height: calc(100% - 8em); /* 8em = 5em + 3em in top and bottom padding */
+    padding: 5em 6vw 3em;
+    transform: translate(0,-120%);
+    -webkit-transform: translate(0,-120%);
+    transition: all 0.5s ease-out;
+}
+
+.modal-active .search-options,
+.modal-active .select-destinations,
+.modal-active .select-dates,
+.modal-active .select-activities,
+.modal-active .calendar,
+.modal-active .review-and-payment,
+.modal-active .log-in,
+.modal-active .sign-up {
+    transform: translate(0,0);
+    -webkit-transform: translate(0,0);
+}
+
+/* Flex box for common parts in search options */
+
+.search-flex {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+/* Search options */
+
+.search-options .destinations,
+.search-options .dates,
+.search-options .activities,
+.search-options .show-results {
+    margin-bottom: 2em;
+}
+
+.search-options .destinations button,
+.search-options .dates button,
+.search-options .activities button,
+.search-options .show-results button {
+    font-size: 1.8rem;
+    padding: 1em 0;
+    border-radius: 0.6em;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #c0c0c0;
+    color: #333333;
+}
+
+.search-options .show-results button {
+    background-color: #006400;
+    border: none;
+    color: #fff;
+}
+
+.search-options .destinations > p,
+.search-options .dates > p,
+.search-options .activities > p {
+    margin-top: 0.7em;
+    line-height: 1.5em;
+}
+
+/*
+Common part for
+Select destinations
+Select dates
+Select activities
+*/
+
+.select-destinations .regions,
+.select-dates .dates-options,
+.select-activities .activities-options {
+    border: 1px solid #333333;
+    border-radius: 1em;
+    padding: 1.3em 0;
+    animation-name: rotate-3d;
+    -webkit-animation-name: rotate-3d;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+}
+
+@keyframes rotate-3d {
+    from {transform: rotateY(90deg); opacity: 0;}
+    to {transform: rotateY(0deg);opacity: 1;}
+}
+
+@-webkit-keyframes rotate-3d {
+    from {transform: rotateY(90deg); opacity: 0;}
+    to {transform: rotateY(0deg);opacity: 1;}
+}
+
+.select-destinations .regions h2,
+.select-dates .dates-options h2,
+.select-activities .activities-options h2 {
+    font-size: 2.4rem;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0.7em;
+}
+
+.select-destinations .regions > div > div,
+.select-dates .dates-options > div > div,
+.select-activities .activities-options > div > div {
+    font-size: 1.8rem;
+    border: 1px solid #333333;
+    border-radius: 0.6em;
+    padding: 0.6em;
+    margin: 0.6em;
+}
+
+/* Select destinations */
+
+/* .select-destinations .regions > div > div:first-child {
+    margin: 20px 25% 10px;
+    flex-basis: 100%;
+    text-align: center;
+} */
+
+.select-destinations .prefectures h3 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin: 1em 0 0.5em;
+    display: none;
+}
+
+.select-destinations .hokkaido-tohoku,
+.select-destinations .kanto,
+.select-destinations .chubu,
+.select-destinations .kinki,
+.select-destinations .chugoku,
+.select-destinations .shikoku,
+.select-destinations .kyushu-okinawa {
+    display: none;
+    animation-name: rotate-3d-x;
+    -webkit-animation-name: rotate-3d-x;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+}
+
+@keyframes rotate-3d-x {
+    from {transform: rotateX(90deg); opacity: 0;}
+    to {transform: rotateX(0deg);opacity: 1;}
+}
+
+@-webkit-keyframes rotate-3d-x {
+    from {transform: rotateX(90deg); opacity: 0;}
+    to {transform: rotateX(0deg);opacity: 1;}
+}
+
+.select-destinations .hokkaido-tohoku div,
+.select-destinations .kanto div,
+.select-destinations .chubu div,
+.select-destinations .kinki div,
+.select-destinations .chugoku div,
+.select-destinations .shikoku div,
+.select-destinations .kyushu-okinawa div {
+    font-size: 2.0rem;
+    border: 1px solid #333333;
+    border-radius: 1em;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+.apply-btn button {
+    font-size: 1.8rem;
+    display: none;
+    background-color: #006400;
+    border: none;
+    color: #fff;
+    padding: 0.8em 1.6em;
+    border-radius: 0.8em;
+    width: 10em;
+    margin: 1.5em auto 0;
+}
+
+/*******************
+Top page for users
+*******************/
+
+/* Upper part */
+
+.explanation {
+    font-size: 1.8rem;
+    padding: 1em 6vw;
+    line-height: 1.4em;
+}
+
+.explanation p {
+    margin-bottom: 0.6em;
+}
+
+.query-result {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 1em 0;
+    border-bottom: 1px solid #b5b5b5;
+    border-top: 1px solid #b5b5b5;
+}
+
+/* Event block */
+
+.event {
+    padding: 1em 6vw;
+    border-bottom: 2px solid #d5d5d5;
+}
+
+.event a {
+    text-decoration: none;
+    -moz-text-decoration: none;
+    color: #484848;
+}
+
+.event .image img {
+    border-radius: 0.5em;
+    width: 100%;
+    height: 15em;
+    object-fit: cover;
+}
+
+.event .title {
+    font-size: 2.2rem;
+    margin: 0.4em 0;
+    font-weight: bold;
+    line-height: 1.4em;
+}
+
+/* Pagination */
+
+.pagination {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1em 0 2em 0;
+}
+
+.pagination i {
+    font-size: 2.5em;
+    color: #333333;
+}
+
+.pagination i.no-link {
+    opacity: 0.3;
+}
+
+/******************
+Event detail page
+******************/
+
+/* Event details */
+
+.event-details .image .main img {
+    max-width: 100%;
+}
+
+.event-details > main > .wrap {
+    padding: 0 6vw;
+}
+
+.event-details > main > .wrap > .title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0.4em 0;
+    line-height: 1.4em;
+}
+
+.event .summary,
+.event .date,
+.event .time,
+.event .address,
+.event-details .category,
+.event-details .date,
+.event-details .time,
+.event-details .address,
+.event-details .summary,
+.event-details .organizer {
+    font-size: 1.8rem;
+    line-height: 1.5em;
+    margin-bottom: 0.6em;
+}
+
+.event .category button,
+.event-details .category a button {
+    font-size: 1.4rem;
+    border: 1px solid #7b7b7b;
+    background-color: transparent;
+    border-radius: 1.5em;
+    padding: 0.5em;
+    margin: 0.4em 0.5em 0.7em 0;
+}
+
+.event .date > span > i,
+.event .time > span > i,
+.event .address > span > i,
+.event-details .date span i,
+.event-details .time span i,
+.event-details .address span i {
+    font-size: 2.2rem;
+    margin-right: 0.5em;
+}
+
+.event-details .summary h2,
+.event-details .details h2,
+.event-details .organizer h2,
+.event-details .where h2,
+.organizer-profile > main > .about > h2 {
+    font-size: 2.2rem;
+    padding: 0.5em 0;
+    margin: 1em -6vw;
+    /* margin of sides should be the same as minus padding of sides in .event-details .wrap
+    or minus padding of sides in main tag if it is for organizer profile page */
+    background-color: #333333;
+    color: #fff;
+    text-align: center;
+}
+
+.event-details .details {
+    font-size: 1.9rem;
+    line-height: 1.5em;
+}
+
+.event-details .details div p {
+    margin-bottom: 0.8em;
+}
+
+.event-details .organizer img {
+    max-width: 7em;
+    border-radius: 50%;
+}
+
+.event-details .organizer .organizer-name {
+    margin: 2em 0 0 2em;
+}
+
+.event-details .where .embed-map iframe {
+    width: 100%;
+    height: 37vh;
+    border: 0;
+}
+
+.event-details .where .open-map,
+.event-details .where .directions {
+    width: 100%;
+    margin: 1em 0;
+}
+
+.event-details .where .open-map button,
+.event-details .where .directions button {
+    font-size: 1.5rem;
+    padding: 0.7em 0;
+    text-align: center;
+    text-decoration: none;
+    width: 95%;
+    background-color: #0054d2;
+    color: #fff;
+    border: none;
+}
+
+.event-details .where .directions button {
+    float: right;
+}
+
+.event-details .price-dates {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.7em 0;
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 0;
+    border-top: 1px solid #acacac;
+    background-color: #fff;
+}
+
+.event-details .price-dates .price {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.event-details .price-dates .dates button {
+    font-size: 1.8rem;
+    padding: 0.6em 0.8em;
+    border-radius: 0.3em;
+    border: 0;
+    text-align: center;
+    background-color: #ce6000;
+    color: #fff;
+}
+
+/* Calendar */
+
+.calendar .calendar-header {
+    font-size: 2.5rem;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #636363;
+}
+
+.calendar .calendar-header h3 {
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+.calendar table {
+    margin: 0 auto;
+}
+
+.calendar th {
+    color: #6d6d6d;
+    padding-bottom: 0.5em;
+}
+
+.calendar td {
+    position: relative;
+    font-size: 1.8rem;
+    width: calc(18em * 0.14);
+    height: calc(18em * 0.14);
+    text-align: center;
+    vertical-align: middle;
+    background-color: #e0f1d5;
+    color: #1e7900;
+    border: 3px solid #fff;
+    border-radius: 0.3em;
+    font-weight: bold;
+}
+
+.calendar td.beforeFirstDay {
+    background-color: #fff;
+}
+
+.calendar td.disabled {
+    background-color: #efefef;
+    color: #ababab;
+}
+
+.calendar td.disabled::before {
+    position: absolute;
+    left: 48%;
+    content: ' ';
+    height: 1em;
+    width: 1px;
+    background-color: #888888;
+}
+
+.calendar td.disabled::before {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.calendar td.disabled::after {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.calendar .date-and-guests {
+    margin: 2.0em auto;
+    width: fit-content;
+}
+
+.calendar .selected-date {
+    font-size: 1.6rem;
+    margin: 1.0em;
+    font-weight: bold;
+    color: #468300;
+}
+
+.calendar .number-of-guests {
+    font-size: 1.6rem;
+    margin: 1.0em;
+    display: flex;
+    align-items: center;
+}
+
+.calendar .number-of-guests select {
+    font-size: 1.6rem;
+    padding: 0.6em 0.8em;
+    margin-left: 0.5em;
+    width: 4.5em;
+    border: 1px solid #5e5e5e;
+    background-color: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.calendar .number-of-guests .down-arrow::after {
+    content: "";
+    position: absolute;
+    font-size: 1.8rem;
+    top: 0.5em;
+    right: 0.7em;
+    width: 0.6em;
+    height: 0.6em;
+    border: solid #4b4b4b;
+    border-width: 0px 2px 2px 0px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.calendar .go-to-next button {
+    display: none;
+    background-color: #0075dc;
+    border: none;
+    color: #fff;
+    font-size: 1.7rem;
+    padding: 0.7em 1.5em;
+    border-radius: 0.5em;
+    margin: 0 auto;
+}
+
+/* Review and payment */
+
+.review-and-payment h2 {
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.review-and-payment h3 {
+    font-size: 2.2rem;
+    margin-top: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.review-and-payment .review-event-title,
+.review-and-payment .review-selected-date,
+.review-and-payment .review-number-of-guests,
+.review-and-payment .review-total-amount {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.8rem;
+    margin-top: 2em;
+    padding: 0 0.5em 0.3em;
+    color: #525252;
+    border-bottom: 1px solid #b5b5b5;
+    line-height: normal;
+}
+
+.review-and-payment .review-event-title div:first-child {
+    margin-right: 0.7em;
+}
+
+.review-and-payment .name > div:first-child,
+.review-and-payment .gender > div:first-child,
+.review-and-payment .date-of-birth > div:first-child,
+.review-and-payment .home-country > div:first-child {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 1.5em 0 0.4em;
+}
+
+.review-and-payment .name > div:nth-child(2) {
+    font-size: 2.0rem;
+    border-top: 1px solid #b5b5b5;
+    border-bottom: 1px solid #b5b5b5;
+    padding: 0.8em 0.5em;
+}
+
+.review-and-payment select {
+    font-size: 1.8rem;
+    border: 1px solid #7b7b7b;
+    padding: 0.7em;
+    width: 100%;
+    background-color: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.review-and-payment .down-arrow::after {
+    content: "";
+    position: absolute;
+    top: 0.8em;
+    right: 1.5em;
+    width: 0.7em;
+    height: 0.7em;
+    border: solid #4b4b4b;
+    border-width: 0px 2px 2px 0px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.review-and-payment .date-of-birth > div:nth-child(2) {
+    display: flex;
+    margin: 0 -0.5em; /* to offset 0.5em padding of both sides */
+}
+
+.review-and-payment .date-of-birth .select-div {
+    width: 33.3%;
+    padding: 0 0.5em;
+    position: relative;
+}
+
+.review-and-payment > div > button {
+    background-color: #d80000;
+    border: none;
+    color: #fff;
+    font-size: 1.7rem;
+    padding: 0.7em 1.5em;
+    border-radius: 0.5em;
+    margin: 1.8em auto 0;
+    display: block;
+}
+
+/*******************
+Reservation success
+*******************/
+
+.reservation-success > main {
+    padding: 2em 6vw;
+}
+
+.reservation-success > main > h1 {
+    font-size: 2.0rem;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.reservation-success > main > p {
+    font-size: 1.6rem;
+    margin-bottom: 1em;
+    line-height: 1.4em;
+}
+
+/*****************
+Organizer profile
+*****************/
+
+.organizer-profile > main {
+    padding: 2em 6vw;
+}
+
+.organizer-profile > main > .name-image {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2.5rem;
+}
+
+.organizer-profile > main > .name-image img {
+    max-width: 6em;
+    border-radius: 50%;
+}
+
+.organizer-profile > main > .about > div {
+    font-size: 1.8rem;
+    line-height: 1.5em;
+}
+
+.organizer-profile > main > .about > div > p {
+    margin-bottom: 1em;
+}
+
+/*************
+User account
+Admin UI
+*************/
+
+/* Top page */
+
+.account > main,
+.admin-top > main {
+    padding: 2em 6vw;
+}
+
+.account .name-image {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2.5rem;
+}
+
+.account .name-image .no-photo {
+    font-size: 3.5rem;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    border-radius: 50%;
+    background-color: #339a00;
+    color: #fff;
+    text-align: center;
+}
+
+.admin-top .name {
+    text-align: right;
+}
+
+.account > main > nav > div,
+.admin-top > main ul > li {
+    font-size: 1.8rem;
+    margin-top: 2em;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid #939393;
+}
+
+.account nav > div > a,
+.admin-top > main ul > li > a {
+    text-decoration: none;
+    color: #373737;
+    display: block;
+}
+
+/***************
+Login & Signup
+Admin UI
+***************/
+
+.actual .log-in,
+.actual .sign-up,
+.create-account > main,
+.register-event > main {
+    padding: 2em 6vw;
+}
+
+.sign-up h1,
+.log-in h1,
+.create-account h1,
+.register-event h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1.2em;
+    text-align: center;
+}
+
+.sign-up input,
+.log-in input,
+.create-account input,
+.register-event .title > input {
+    font-size: 2.0rem;
+    border: 1px solid #7b7b7b;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1.2em;
+    border-radius: 0.4em;
+    box-sizing: border-box;
+}
+
+.sign-up button,
+.log-in button,
+.create-account button,
+.register-event button {
+    background-color: #006400;
+    color: #fff;
+    border: none;
+    font-size: 2.0rem;
+    width: 100%;
+    padding: 0.5em 0;
+    margin-bottom: 1.2em;
+    border-radius: 0.4em;
+}
+
+.create-account .image button,
+.register-event .images button {
+    background-color: #282828;
+}
+
+.create-account button[type="submit"],
+.register-event button[type="submit"] {
+    background-color: #b10000;
+}
+
+.sign-up .navigate-to-log-in,
+.log-in .navigate-to-sign-up {
+    text-align: center;
+    line-height: 2em;
+}
+
+.sign-up .navigate-to-log-in a,
+.log-in .navigate-to-sign-up a {
+    text-decoration: none;
+    color: #0070e8;
+}
+
+textarea {
+    font-size: 2.0rem;
+    border: 1px solid #525252;
+    width: 100%;
+    height: 5em;
+    line-height: normal;
+    padding: 0.5em;
+    margin-bottom: 1.0em;
+    border-radius: 0.4em;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.create-account textarea,
+.register-event .details > textarea {
+    height: 15em;
+}
+
+/********
+Admin UI
+*********/
+
+.register-event .name {
+    text-align: right;
+    margin-bottom: 1em;
+}
+
+.create-account .image_thumbnail img,
+.register-event .main_image_thumbnail img {
+    width: 100%;
+    margin-bottom: 1.2em;
+    border-radius: 0.6em;
+}
+
+.register-event .categories {
+    padding: 2em 0 1.5em;
+    border-top: 1px solid #7b7b7b;
+}
+
+.register-event .categories .container {
+    font-size: 2.0rem;
+    padding-left: 1.5em;
+    margin-bottom: 0.6em;
+    line-height: 1.2em;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+}
+
+.register-event .categories .container input {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    cursor: pointer;
+}
+
+.register-event .categories .container .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.25em;
+    width: 1.25em;
+    background-color:#eee;
+}
+
+.register-event .categories .container:hover .checkmark {
+    background-color: #ccc;
+}
+
+.register-event .categories .container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+.register-event .categories .container .checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 0.45em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid #fff;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+}
+
+.register-event .categories .container input:checked ~ .checkmark::after {
+    display: block;
+}
+
+.register-event .calendar {
+    border-top: 1px solid #7b7b7b;
+    border-bottom: 1px solid #7b7b7b;
+    padding-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.register-event .calendar .date-range {
+    font-size: 1.9rem;
+    margin: 1.4em auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.register-event .calendar .date-range .from-date span:first-child,
+.register-event .calendar .date-range .to-date span:first-child {
+    margin-right: 0.3em;
+    font-weight: bold;
+}
+
+.register-event .time > div {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    font-size: 2.0rem;
+    margin-bottom: 1em;
+}
+
+.register-event .time > div > div:first-child {
+    margin-right: 1em;
+    width: 3.5em;
+}
+
+.register-event .time select {
+    font-size: 1.6rem;
+    border: 1px solid #7b7b7b;
+    padding: 0.45em;
+    width: 4em;
+    background-color: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.register-event .time > div > div:nth-child(3) {
+    padding: 0 0.25em;
+}
+
+.register-event .time .down-arrow::after {
+    content: "";
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    width: 0.4em;
+    height: 0.4em;
+    border: solid #4b4b4b;
+    border-width: 0px 0.1em 0.1em 0px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.register-event .address {
+    margin: 1.5em 0;
+}
+
+.register-event .prefecture select {
+    font-size: 1.8rem;
+    border: 1px solid #7b7b7b;
+    padding: 0.7em;
+    margin-bottom: 1.2em;
+    width: 100%;
+    background-color: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.register-event .prefecture .down-arrow::after {
+    content: "";
+    position: absolute;
+    font-size: 2.0rem;
+    top: 0.75em;
+    right: 0.75em;
+    width: 0.5em;
+    height: 0.5em;
+    border: solid #4b4b4b;
+    border-width: 0px 0.1em 0.1em 0px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+/********************
+Responsive for tablet
+*********************/
+
+@media (min-width: 700px) {
+
+    html {
+        font-size: 70%;
+    }
+
+    /******
+    Header
+    ******/
+
+    header {
+        height: 80px;
+    }
+
+    header .title img {
+        width: 280px;
+    }
+
+    /* Navigation part in Header */
+
+    .nav-bar {
+        visibility: visible;
+        justify-content: unset;
+        left: 47%;
+        width: auto; /* necessary for sticky */
+    }
+
+    .nav-bar > div:first-child,
+    .nav-bar > div:last-child {
+        display: none;
+    }
+
+    .nav-bar > div {
+        margin: 0 0.8em;
+    }
+
+    /* Humburger menu */
+
+    .menu-wrap {
+        top: 10px;
+        right: 6vw;
+    }
+
+    .menu-wrap .menu {
+        width: 40%;
+    }
+
+    .menu-wrap .toggler {
+        top: 5px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .menu-wrap .toggler:checked ~ .menu {
+        left: 60%;
+    }
+
+    .menu-wrap .hamburger {
+        width: 40px;
+        top: 15px;
+    }
+
+    .menu-wrap .hamburger > div {
+        height: 6px;
+    }
+
+    .menu-wrap .hamburger > div::before,
+    .menu-wrap .hamburger > div::after {
+        height: 6px;
+    }
+
+    .menu-wrap .hamburger > div::before {
+        top: -15px;
+    }
+
+    .menu-wrap .hamburger > div::after {
+        top: 15px;
+    }
+
+    /*****
+    Map
+    *****/
+
+    main.map { /* Map part in map.php */
+        height: calc(100% - 81px); /* 100% of body - (header 80px + border 1px + footer 0px) */
+    }
+
+    /******
+    Modal
+    ******/
+
+    .modal .log-in,
+    .modal .sign-up {
+        width: 450px;
+        min-height: auto;
+        margin: 0 auto;
+        padding: 3em;
+        position: relative;
+        border-radius: 1em;
+        top: 5%;
+    }
+
+    /***************
+    Login & Signup
+    Admin UI
+    ***************/
+
+    .actual .log-in,
+    .actual .sign-up {
+        width: 450px;
+        margin: 0 auto;
+    }
+
+    .create-account > main,
+    .register-event > main {
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    /*******************
+    Top page for users
+    *******************/
+
+    /* Event block */
+
+    .event a {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .event .image {
+        width: 45%;
+        padding-top: 1em;
+    }
+
+    .event .basic-info {
+        width: 50%;
+    }
+
+    /******************
+    Event detail page
+    ******************/
+
+    /* Event details */
+
+    .event-details .image {
+        text-align: center;
+        margin-top: 1em;
+    }
+
+    /* Calendar */
+
+    .calendar td {
+        width: calc(25em * 0.14);
+        height: calc(25em * 0.14);
+    }
+
+    .calendar .date-and-guests {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0 auto;
+        width: 80%;
+        line-height: normal;
+    }
+}
+
+/******************
+Responsive for PC
+*******************/
+
+@media (min-width: 1100px) {
+
+    /******
+    Modal
+    ******/
+
+    .modal .search-options,
+    .modal .select-destinations,
+    .modal .select-dates,
+    .modal .select-activities,
+    .modal .calendar,
+    .modal .review-and-payment {
+        width: 750px;
+        min-height: auto;
+        margin: 0 auto;
+        padding: 5em;
+        position: relative;
+        border-radius: 1em;
+        top: 5%;
+    }
+
+    .modal .search-options > form > div:first-child {
+        display: flex;
+        justify-content: space-around;
+        margin: 3em 0;
+    }
+
+    .search-options .destinations,
+    .search-options .dates,
+    .search-options .activities,
+    .search-options .show-results {
+        width: 25%;
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    /******
+    Header
+    ******/
+
+    header > .wrap {
+        position: relative;
+        height: 100%;
+    }
+
+    header .title {
+        left: 0;
+    }
+
+    .menu-wrap {
+        right: 0;
+    }
+
+    /*******************
+    Top page for users
+    *******************/
+
+    /******************
+    Event detail page
+    ******************/
+
+    /*****************
+    Organizer profile
+    *****************/
+
+    /*************
+    User account
+    Admin UI
+    *************/
+
+    header > .wrap,
+    .explanation,
+    .event,
+    .event-details > main > .wrap,
+    .reservation-success > main,
+    .organizer-profile > main,
+    .account > main,
+    .admin-top > main {
+        width: 1000px;
+        margin: 0 auto;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .event-details .summary h2,
+    .event-details .details h2,
+    .event-details .organizer h2,
+    .event-details .where h2,
+    .organizer-profile > main > .about > h2 {
+        margin-right: calc((1000px - 100vw) / 2);
+        margin-left: calc((1000px - 100vw) / 2);
+        /* margin of sides should be the same as minus margin of sides in .event-details .wrap
+        or minus margin of sides in main tag if it is for organizer profile page */
+    }
+
+}

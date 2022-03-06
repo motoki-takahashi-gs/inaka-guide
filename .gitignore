@@ -1,0 +1,6 @@
+.DS_Store
+/images/events/*
+/images/guides/*
+/includes/functions.php
+/includes/memo.php
+/js/memo.js
